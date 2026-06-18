@@ -5,774 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podiadle | University of Huddersfield</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --hud-blue: #003865;
-            --hud-blue-light: #004d8c;
-            --hud-orange: #E87722;
-            --hud-orange-light: #ff8c3a;
-            --correct: #538d4e;
-            --present: #b59f3b;
-            --absent: #3a3a3c;
-            --tile-border: #3a3a3c;
-            --key-bg: #818384;
-            --white: #ffffff;
-            --light-grey: #d3d6da;
-            --dark-bg: #121213;
-            --tile-bg: #121213;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
-            min-height: 100vh;
-            color: var(--white);
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            background: var(--hud-blue);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 4px solid var(--hud-orange);
-            position: relative;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--hud-orange) 0%, var(--hud-orange-light) 50%, var(--hud-orange) 100%);
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .hud-logo {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .hud-logo-row {
-            display: flex;
-            gap: 3px;
-        }
-
-        .hud-logo-block {
-            width: 22px;
-            height: 22px;
-        }
-
-        .hud-logo-block.orange {
-            background: var(--hud-orange);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
-        }
-
-        .hud-logo-block.blue {
-            background: var(--white);
-            clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
-        }
-
-        .hud-logo-block.orange2 {
-            background: var(--hud-orange);
-            clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
-        }
-
-        .hud-logo-block.blue2 {
-            background: var(--white);
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-text .uni-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: var(--white);
-            opacity: 0.9;
-        }
-
-        .brand-text .app-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--white);
-        }
-
-        .brand-text .app-name span {
-            color: var(--hud-orange);
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .header-btn {
-            background: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-
-        .header-btn:hover {
-            background: var(--hud-orange);
-            border-color: var(--hud-orange);
-        }
-
-        /* Main Container */
-        .main-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 1.5rem 1rem;
-        }
-
-        /* Week Info */
-        .week-info {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            border-left: 4px solid var(--hud-orange);
-        }
-
-        .week-info h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            color: var(--hud-orange);
-            margin-bottom: 0.3rem;
-        }
-
-        .week-info p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .category-badge {
-            display: inline-block;
-            background: var(--hud-blue);
-            color: var(--white);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .next-week-countdown {
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.85rem;
-            color: #aaa;
-        }
-
-        .next-week-countdown span {
-            color: var(--hud-orange);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        /* Game Board */
-        .game-board {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 1.5rem;
-        }
-
-        .board-row {
-            display: flex;
-            gap: 6px;
-        }
-
-        .tile {
-            width: 52px;
-            height: 52px;
-            border: 2px solid var(--tile-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            background: var(--tile-bg);
-            transition: transform 0.1s ease;
-        }
-
-        .tile.filled {
-            border-color: var(--light-grey);
-            animation: pop 0.1s ease;
-        }
-
-        .tile.correct {
-            background: var(--correct);
-            border-color: var(--correct);
-            animation: flip 0.5s ease forwards;
-        }
-
-        .tile.present {
-            background: var(--present);
-            border-color: var(--present);
-            animation: flip 0.5s ease forwards;
-        }
-
-        .tile.absent {
-            background: var(--absent);
-            border-color: var(--absent);
-            animation: flip 0.5s ease forwards;
-        }
-
-        @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes flip {
-            0% { transform: rotateX(0); }
-            50% { transform: rotateX(90deg); }
-            100% { transform: rotateX(0); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-
-        .board-row.shake {
-            animation: shake 0.3s ease;
-        }
-
-        /* Keyboard */
-        .keyboard {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 1.5rem;
-        }
-
-        .keyboard-row {
-            display: flex;
-            gap: 5px;
-        }
-
-        .key {
-            min-width: 35px;
-            height: 50px;
-            border: none;
-            border-radius: 4px;
-            background: var(--key-bg);
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-transform: uppercase;
-            transition: all 0.1s ease;
-        }
-
-        .key:hover {
-            background: #a0a0a0;
-        }
-
-        .key.wide {
-            min-width: 60px;
-            font-size: 0.7rem;
-        }
-
-        .key.correct {
-            background: var(--correct);
-        }
-
-        .key.present {
-            background: var(--present);
-        }
-
-        .key.absent {
-            background: #3a3a3c;
-        }
-
-        /* Help Section */
-        .help-section {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .help-btn {
-            background: var(--hud-blue);
-            border: none;
-            color: var(--white);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .help-btn:hover {
-            background: var(--hud-blue-light);
-            transform: translateY(-2px);
-        }
-
-        .help-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .help-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Hint Display */
-        .hint-display {
-            background: rgba(232, 119, 34, 0.15);
-            border: 2px solid var(--hud-orange);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            display: none;
-            position: relative;
-        }
-
-        .hint-display.visible {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .hint-display h4 {
-            color: var(--hud-orange);
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .hint-display p {
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .hint-close {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            line-height: 1;
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
-        }
-
-        .hint-close:hover {
-            opacity: 1;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Message Toast */
-        .message-container {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-        }
-
-        .message {
-            background: var(--white);
-            color: var(--dark-bg);
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translate(-50%, -20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.85);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 1rem;
-        }
-
-        .modal-overlay.visible {
-            display: flex;
-        }
-
-        .modal {
-            background: #1a1a2e;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 2px solid var(--hud-blue);
-            animation: modalIn 0.3s ease;
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .modal-header {
-            background: var(--hud-blue);
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid var(--hud-orange);
-        }
-
-        .modal-header h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        /* How to Play */
-        .how-to-play p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .example-row {
-            display: flex;
-            gap: 4px;
-            margin: 1rem 0;
-        }
-
-        .example-tile {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--tile-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .example-tile.correct { background: var(--correct); border-color: var(--correct); }
-        .example-tile.present { background: var(--present); border-color: var(--present); }
-        .example-tile.absent { background: var(--absent); border-color: var(--absent); }
-
-        .example-text {
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            color: #aaa;
-        }
-
-        /* Stats Modal */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .guess-distribution h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .distribution-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .distribution-label {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            width: 20px;
-        }
-
-        .distribution-bar {
-            background: var(--hud-blue);
-            height: 24px;
-            min-width: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-radius: 3px;
-            transition: width 0.5s ease;
-        }
-
-        .distribution-bar.highlight {
-            background: var(--correct);
-        }
-
-        /* Game Over */
-        .game-result {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .game-result.visible {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .game-result h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .game-result.win h3 {
-            color: var(--correct);
-        }
-
-        .game-result.lose h3 {
-            color: var(--hud-orange);
-        }
-
-        .game-result .answer {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 1rem 0;
-            color: var(--hud-orange);
-        }
-
-        .game-result .definition {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #ccc;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 6px;
-        }
-
-        .next-puzzle {
-            font-size: 0.9rem;
-            color: #888;
-            margin-top: 1rem;
-        }
-
-        .next-puzzle span {
-            color: var(--hud-orange);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .share-btn {
-            background: var(--correct);
-            border: none;
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(83, 141, 78, 0.4);
-        }
-
-        .reset-btn {
-            background: var(--hud-blue);
-        }
-
-        .reset-btn:hover {
-            box-shadow: 0 4px 15px rgba(0, 56, 101, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 2rem;
-        }
-
-        .footer p {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer a {
-            color: var(--hud-orange);
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 500px) {
-            .tile {
-                width: 42px;
-                height: 42px;
-                font-size: 1.4rem;
-            }
-
-            .key {
-                min-width: 28px;
-                height: 45px;
-                font-size: 0.75rem;
-            }
-
-            .key.wide {
-                min-width: 50px;
-                font-size: 0.65rem;
-            }
-
-            .header {
-                padding: 0.8rem 1rem;
-            }
-
-            .brand-text .app-name {
-                font-size: 1.2rem;
-            }
-
-            .brand-text .uni-name {
-                font-size: 0.6rem;
-            }
-
-            .hud-logo {
-                width: 40px;
-                height: 40px;
-            }
-
-            .hud-logo-block {
-                width: 18px;
-                height: 18px;
-            }
-
-            .header-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.75rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -818,9 +51,7 @@
         <div class="help-section">
             <button class="help-btn" id="hint-btn" onclick="showHint()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
                 </svg>
                 Show Hint (-1 guess)
             </button>
@@ -829,7 +60,7 @@
         <!-- Hint Display -->
         <div class="hint-display" id="hint-display">
             <button class="hint-close" onclick="hideHint()">&times;</button>
-            <h4>💡 Definition Hint</h4>
+            <h4>Definition Hint</h4>
             <p id="hint-text"></p>
         </div>
 
@@ -838,8 +69,10 @@
             <h3 id="result-title"></h3>
             <div class="answer" id="result-answer"></div>
             <div class="definition" id="result-definition"></div>
-            <button class="share-btn" onclick="shareResults()">Share Results 📋</button>
-            <button class="share-btn reset-btn" onclick="resetGame()">Play Again 🔄</button>
+            <div class="game-result-actions">
+                <button class="share-btn" onclick="shareResults()">Share Results</button>
+                <button class="share-btn secondary" onclick="resetGame()">Practice Mode</button>
+            </div>
             <div class="next-puzzle">
                 Next puzzle in: <span id="countdown"></span>
             </div>
@@ -852,7 +85,7 @@
     <!-- Footer -->
     <footer class="footer">
         <p>A learning tool for Podiatry students</p>
-        <p>© A Dr Roberts PhD production</p>
+        <p>&copy; A Dr Roberts PhD production</p>
     </footer>
 
     <!-- How to Play Modal -->
@@ -866,11 +99,11 @@
                 <p><strong>Guess the podiatry anatomy term in 6 tries.</strong></p>
                 <p>Each guess must be a valid attempt. Press Enter to submit.</p>
                 <p>After each guess, the colour of the tiles will change to show how close your guess was to the word.</p>
-                
+
                 <hr style="border: none; border-top: 1px solid #333; margin: 1.5rem 0;">
-                
+
                 <p><strong>Examples</strong></p>
-                
+
                 <div class="example-row">
                     <div class="example-tile correct">T</div>
                     <div class="example-tile">A</div>
@@ -879,7 +112,7 @@
                     <div class="example-tile">S</div>
                 </div>
                 <p class="example-text"><strong>T</strong> is in the word and in the correct spot.</p>
-                
+
                 <div class="example-row">
                     <div class="example-tile">F</div>
                     <div class="example-tile present">I</div>
@@ -889,7 +122,7 @@
                     <div class="example-tile">A</div>
                 </div>
                 <p class="example-text"><strong>I</strong> is in the word but in the wrong spot.</p>
-                
+
                 <div class="example-row">
                     <div class="example-tile">C</div>
                     <div class="example-tile">U</div>
@@ -899,11 +132,11 @@
                     <div class="example-tile">D</div>
                 </div>
                 <p class="example-text"><strong>O</strong> is not in the word in any spot.</p>
-                
+
                 <hr style="border: none; border-top: 1px solid #333; margin: 1.5rem 0;">
-                
+
                 <p><strong>A new puzzle is released each week!</strong></p>
-                <p>Use the <strong>Hint</strong> button to see a definition, or the <strong>Diagram</strong> button to see where the structure is located on the foot.</p>
+                <p>Use the <strong>Hint</strong> button to see a definition (costs 1 guess).</p>
             </div>
         </div>
     </div>
@@ -934,7 +167,7 @@
                         <div class="stat-label">Max Streak</div>
                     </div>
                 </div>
-                
+
                 <div class="guess-distribution">
                     <h4>Guess Distribution</h4>
                     <div id="distribution-bars"></div>
@@ -946,105 +179,14 @@
     <!-- Message Container -->
     <div class="message-container" id="message-container"></div>
 
+    <script src="js/terms.js"></script>
+    <script src="js/game.js"></script>
     <script>
         // ============================================
-        // PODIATRY ANATOMY TERMS DATABASE (100+ terms)
+        // WEEKLY MODE — page-specific logic
         // ============================================
-        const TERMS = [
-            // BONES (30 terms)
-            { word: "TALUS", category: "Bones", hint: "The ankle bone that articulates with the tibia and fibula superiorly and the calcaneus inferiorly.", location: "ankle" },
-            { word: "CALCANEUS", category: "Bones", hint: "The largest tarsal bone, forming the heel. It articulates with the talus and cuboid.", location: "heel" },
-            { word: "CUBOID", category: "Bones", hint: "A cube-shaped tarsal bone on the lateral side of the foot, articulating with the calcaneus and metatarsals 4-5.", location: "midfoot-lateral" },
-            { word: "NAVICULAR", category: "Bones", hint: "A boat-shaped tarsal bone on the medial side of the foot, articulating with the talus and cuneiforms.", location: "midfoot-medial" },
-            { word: "CUNEIFORM", category: "Bones", hint: "Three wedge-shaped bones (medial, intermediate, lateral) in the midfoot region.", location: "midfoot" },
-            { word: "METATARSAL", category: "Bones", hint: "One of five long bones in the forefoot connecting the tarsals to the phalanges.", location: "forefoot" },
-            { word: "PHALANX", category: "Bones", hint: "A bone of the toe; the great toe has 2, while the lesser toes have 3 each.", location: "toes" },
-            { word: "SESAMOID", category: "Bones", hint: "Small bones embedded within tendons, typically found beneath the first metatarsal head.", location: "ball" },
-            { word: "HALLUX", category: "Bones", hint: "The anatomical term for the great toe (big toe).", location: "great-toe" },
-            { word: "FIBULA", category: "Bones", hint: "The lateral bone of the lower leg, forming the lateral malleolus at the ankle.", location: "ankle-lateral" },
-            { word: "TIBIA", category: "Bones", hint: "The medial and larger bone of the lower leg, forming the medial malleolus.", location: "ankle-medial" },
-            { word: "MALLEOLUS", category: "Bones", hint: "The bony prominence on either side of the ankle; medial (tibia) or lateral (fibula).", location: "ankle" },
-            { word: "SUSTENTACULUM", category: "Bones", hint: "The shelf-like projection on the medial aspect of the calcaneus supporting the talus.", location: "heel-medial" },
-            { word: "TROCHLEA", category: "Bones", hint: "The superior articular surface of the talus that articulates with the tibia.", location: "ankle" },
-            { word: "TUBEROSITY", category: "Bones", hint: "A bony prominence serving as an attachment site for muscles or ligaments.", location: "various" },
-            { word: "STYLOID", category: "Bones", hint: "A pointed bony projection, such as found at the base of the 5th metatarsal.", location: "forefoot-lateral" },
-            { word: "TUBERCLE", category: "Bones", hint: "A small rounded projection on a bone for muscle or ligament attachment.", location: "various" },
-            { word: "CONDYLE", category: "Bones", hint: "A rounded articular surface at the end of a bone.", location: "various" },
-            { word: "EPIPHYSIS", category: "Bones", hint: "The end portion of a long bone, initially separated from the shaft by cartilage.", location: "various" },
-            { word: "DIAPHYSIS", category: "Bones", hint: "The shaft or central portion of a long bone.", location: "various" },
-            { word: "PERIOSTEUM", category: "Bones", hint: "The fibrous membrane covering the outer surface of bones.", location: "various" },
-            { word: "CORTEX", category: "Bones", hint: "The dense outer layer of compact bone tissue.", location: "various" },
-            { word: "TRABECULAE", category: "Bones", hint: "The lattice-like structure of spongy (cancellous) bone.", location: "various" },
-            { word: "OSSICLE", category: "Bones", hint: "A small accessory bone, sometimes found in the foot.", location: "various" },
-            { word: "APOPHYSIS", category: "Bones", hint: "A bony outgrowth that develops from a separate ossification centre.", location: "various" },
-            
-            // MUSCLES (25 terms)
-            { word: "GASTROCNEMIUS", category: "Muscles", hint: "The large superficial calf muscle with two heads, a powerful plantarflexor.", location: "calf" },
-            { word: "SOLEUS", category: "Muscles", hint: "The deep calf muscle beneath the gastrocnemius, a key plantarflexor.", location: "calf" },
-            { word: "TIBIALIS", category: "Muscles", hint: "Muscles named for their tibial attachment; anterior inverts and dorsiflexes, posterior inverts and plantarflexes.", location: "leg" },
-            { word: "PERONEUS", category: "Muscles", hint: "Also known as fibularis muscles; evert the foot and assist plantarflexion.", location: "leg-lateral" },
-            { word: "FIBULARIS", category: "Muscles", hint: "Modern term for peroneal muscles; longus, brevis, and tertius.", location: "leg-lateral" },
-            { word: "FLEXOR", category: "Muscles", hint: "Muscles that flex (curl) the toes; hallucis longus/brevis and digitorum longus/brevis.", location: "leg-plantar" },
-            { word: "EXTENSOR", category: "Muscles", hint: "Muscles that extend (straighten) the toes; hallucis longus and digitorum longus/brevis.", location: "leg-dorsal" },
-            { word: "ABDUCTOR", category: "Muscles", hint: "Muscles that move toes away from midline; hallucis and digiti minimi.", location: "plantar" },
-            { word: "ADDUCTOR", category: "Muscles", hint: "Muscle that moves the great toe toward midline; adductor hallucis.", location: "plantar" },
-            { word: "LUMBRICAL", category: "Muscles", hint: "Four small intrinsic muscles that flex the MTPJs and extend the IPJs.", location: "plantar" },
-            { word: "INTEROSSEI", category: "Muscles", hint: "Small muscles between metatarsals; plantar adduct, dorsal abduct the toes.", location: "forefoot" },
-            { word: "QUADRATUS", category: "Muscles", hint: "Quadratus plantae; assists flexor digitorum longus in toe flexion.", location: "plantar" },
-            { word: "PLANTARIS", category: "Muscles", hint: "A small, thin muscle in the posterior leg with a very long tendon.", location: "calf" },
-            { word: "POPLITEUS", category: "Muscles", hint: "A muscle at the back of the knee that unlocks the extended knee.", location: "knee" },
-            { word: "TRICEPS", category: "Muscles", hint: "Triceps surae - the combined gastrocnemius and soleus muscles.", location: "calf" },
-            
-            // TENDONS, LIGAMENTS & CONNECTIVE TISSUES (25 terms)
-            { word: "ACHILLES", category: "Tendons, Ligaments & Connective Tissues", hint: "The strongest tendon in the body, connecting the calf muscles to the calcaneus.", location: "heel-posterior" },
-            { word: "PLANTAR", category: "Tendons, Ligaments & Connective Tissues", hint: "Relating to the sole of the foot; plantar fascia is a key structure.", location: "plantar" },
-            { word: "FASCIA", category: "Tendons, Ligaments & Connective Tissues", hint: "The plantar fascia is thick connective tissue supporting the arch.", location: "plantar" },
-            { word: "DELTOID", category: "Tendons, Ligaments & Connective Tissues", hint: "A strong triangular ligament on the medial side of the ankle.", location: "ankle-medial" },
-            { word: "TALOFIBULAR", category: "Tendons, Ligaments & Connective Tissues", hint: "Ligaments connecting talus to fibula; anterior and posterior.", location: "ankle-lateral" },
-            { word: "CALCANEOFIBULAR", category: "Tendons, Ligaments & Connective Tissues", hint: "A lateral ankle ligament connecting the calcaneus to the fibula.", location: "ankle-lateral" },
-            { word: "SPRING", category: "Tendons, Ligaments & Connective Tissues", hint: "The plantar calcaneonavicular ligament; supports the head of the talus.", location: "midfoot" },
-            { word: "BIFURCATE", category: "Tendons, Ligaments & Connective Tissues", hint: "A Y-shaped ligament connecting calcaneus to navicular and cuboid.", location: "midfoot" },
-            { word: "RETINACULUM", category: "Tendons, Ligaments & Connective Tissues", hint: "Band-like structures holding tendons in place at the ankle.", location: "ankle" },
-            { word: "SYNDESMOSIS", category: "Tendons, Ligaments & Connective Tissues", hint: "The fibrous joint between the distal tibia and fibula.", location: "ankle" },
-            { word: "COLLATERAL", category: "Tendons, Ligaments & Connective Tissues", hint: "Ligaments on the sides of joints providing lateral stability.", location: "various" },
-            { word: "CAPSULE", category: "Tendons, Ligaments & Connective Tissues", hint: "The fibrous tissue enclosing a synovial joint.", location: "various" },
-            { word: "SYNOVIUM", category: "Tendons, Ligaments & Connective Tissues", hint: "The membrane lining joint capsules, producing synovial fluid.", location: "various" },
-            { word: "BURSA", category: "Tendons, Ligaments & Connective Tissues", hint: "A fluid-filled sac reducing friction between tissues.", location: "various" },
-            { word: "SHEATH", category: "Tendons, Ligaments & Connective Tissues", hint: "The synovial covering around tendons allowing smooth gliding.", location: "various" },
-            { word: "APONEUROSIS", category: "Tendons, Ligaments & Connective Tissues", hint: "A flat, sheet-like tendon; the plantar aponeurosis supports the arch.", location: "plantar" },
-            
-            // NERVES & BLOOD VESSELS (15 terms)
-            { word: "TIBIAL", category: "Nerves & Vessels", hint: "The tibial nerve and artery run behind the medial malleolus.", location: "ankle-medial" },
-            { word: "PERONEAL", category: "Nerves & Vessels", hint: "The common peroneal nerve wraps around the fibular neck.", location: "leg-lateral" },
-            { word: "SURAL", category: "Nerves & Vessels", hint: "A sensory nerve supplying the lateral aspect of the foot.", location: "leg-lateral" },
-            { word: "SAPHENOUS", category: "Nerves & Vessels", hint: "The great saphenous vein runs anterior to the medial malleolus.", location: "ankle-medial" },
-            { word: "DORSALIS", category: "Nerves & Vessels", hint: "Dorsalis pedis - the main artery on the dorsum of the foot.", location: "dorsal" },
-            { word: "PLANTAR", category: "Nerves & Vessels", hint: "Medial and lateral plantar nerves and arteries supply the sole.", location: "plantar" },
-            { word: "DIGITAL", category: "Nerves & Vessels", hint: "The digital nerves and arteries supply the individual toes.", location: "toes" },
-            { word: "TARSAL", category: "Nerves & Vessels", hint: "The tarsal tunnel contains neurovascular structures behind medial malleolus.", location: "ankle-medial" },
-            { word: "METATARSAL", category: "Nerves & Vessels", hint: "Dorsal and plantar metatarsal arteries supply the forefoot.", location: "forefoot" },
-            { word: "PERFORATING", category: "Nerves & Vessels", hint: "Arteries connecting dorsal and plantar circulations through intermetatarsal spaces.", location: "forefoot" },
-            
-            // REGIONS & SURFACES (15 terms)
-            { word: "DORSAL", category: "Regions", hint: "The top surface of the foot (dorsum).", location: "dorsal" },
-            { word: "PLANTAR", category: "Regions", hint: "The sole or bottom surface of the foot.", location: "plantar" },
-            { word: "MEDIAL", category: "Regions", hint: "The inner side of the foot (toward the midline).", location: "medial" },
-            { word: "LATERAL", category: "Regions", hint: "The outer side of the foot (away from the midline).", location: "lateral" },
-            { word: "PROXIMAL", category: "Regions", hint: "Closer to the body; the heel is proximal to the toes.", location: "various" },
-            { word: "DISTAL", category: "Regions", hint: "Further from the body; the toes are distal to the heel.", location: "various" },
-            { word: "ANTERIOR", category: "Regions", hint: "Toward the front; the toes are anterior to the ankle.", location: "various" },
-            { word: "POSTERIOR", category: "Regions", hint: "Toward the back; the heel is posterior to the forefoot.", location: "various" },
-            { word: "FOREFOOT", category: "Regions", hint: "The front part of the foot containing metatarsals and phalanges.", location: "forefoot" },
-            { word: "MIDFOOT", category: "Regions", hint: "The middle part of the foot containing the tarsal bones.", location: "midfoot" },
-            { word: "REARFOOT", category: "Regions", hint: "The back part of the foot; the talus and calcaneus.", location: "rearfoot" },
-            { word: "HINDFOOT", category: "Regions", hint: "Another term for rearfoot; talus and calcaneus region.", location: "rearfoot" },
-            { word: "ARCH", category: "Regions", hint: "The curved structure of the foot; medial longitudinal, lateral longitudinal, and transverse.", location: "arch" },
-            { word: "SULCUS", category: "Regions", hint: "A groove or furrow; the toe sulcus is where nails meet skin.", location: "toes" },
-            { word: "INTERDIGITAL", category: "Regions", hint: "The spaces between the toes.", location: "toes" }
-        ];
 
-        // Deterministic shuffle so categories are spread across weeks
-        // (instead of 25 bone weeks in a row, then 15 muscle weeks, etc.)
+        // Deterministic shuffle for even category distribution
         function seededShuffle(arr, seed) {
             const shuffled = [...arr];
             let s = seed;
@@ -1057,30 +199,14 @@
         }
         const SHUFFLED_TERMS = seededShuffle(TERMS, 42);
 
-        // ============================================
-        // GAME STATE
-        // ============================================
-        const MAX_GUESSES = 6;
-        let currentWord = null;
-        let currentGuess = "";
-        let guesses = [];
-        let gameOver = false;
-        let hintUsed = false;
         let currentWeek = 1;
-        
-        // ============================================
-        // WEEK CALCULATION
-        // ============================================
+
         function getWeekNumber() {
-            // Start date for week 1 - Friday 6th February 2025
             const startDate = new Date('2025-02-06T00:00:00');
             const now = new Date();
-            
-            // If before start date, return week 1
-            if (now < startDate) {
-                return 1;
-            }
-            
+
+            if (now < startDate) return 1;
+
             const diffTime = now - startDate;
             const diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
             return (diffWeeks % TERMS.length) + 1;
@@ -1093,19 +219,14 @@
 
         function getTimeUntilNextWeek() {
             const now = new Date();
-            const dayOfWeek = now.getDay(); // 0 = Sunday, 5 = Friday
-            
-            // Calculate days until next Friday
+            const dayOfWeek = now.getDay();
             let daysUntilFriday = (5 - dayOfWeek + 7) % 7;
-            if (daysUntilFriday === 0) {
-                // If it's Friday, next puzzle is next Friday
-                daysUntilFriday = 7;
-            }
-            
+            if (daysUntilFriday === 0) daysUntilFriday = 7;
+
             const nextFriday = new Date(now);
             nextFriday.setDate(now.getDate() + daysUntilFriday);
             nextFriday.setHours(0, 0, 0, 0);
-            
+
             return nextFriday - now;
         }
 
@@ -1114,21 +235,18 @@
             const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-            
-            if (days > 0) {
-                return `${days}d ${hours}h ${minutes}m`;
-            }
+
+            if (days > 0) return `${days}d ${hours}h ${minutes}m`;
             return `${hours}h ${minutes}m ${seconds}s`;
         }
 
         // ============================================
         // LOCAL STORAGE
         // ============================================
+
         function loadStats() {
             const stats = localStorage.getItem('podiadle_stats');
-            if (stats) {
-                return JSON.parse(stats);
-            }
+            if (stats) return JSON.parse(stats);
             return {
                 played: 0,
                 wins: 0,
@@ -1144,9 +262,7 @@
 
         function loadGameState() {
             const state = localStorage.getItem('podiadle_state');
-            if (state) {
-                return JSON.parse(state);
-            }
+            if (state) return JSON.parse(state);
             return null;
         }
 
@@ -1161,315 +277,32 @@
         }
 
         // ============================================
-        // GAME BOARD
+        // GAME END
         // ============================================
-        function createBoard() {
-            const board = document.getElementById('game-board');
-            board.innerHTML = '';
-            
-            const wordLength = currentWord.word.length;
-            
-            for (let i = 0; i < MAX_GUESSES; i++) {
-                const row = document.createElement('div');
-                row.className = 'board-row';
-                row.id = `row-${i}`;
-                
-                for (let j = 0; j < wordLength; j++) {
-                    const tile = document.createElement('div');
-                    tile.className = 'tile';
-                    tile.id = `tile-${i}-${j}`;
-                    row.appendChild(tile);
-                }
-                
-                board.appendChild(row);
-            }
-        }
 
-        function updateBoard() {
-            const wordLength = currentWord.word.length;
-            
-            // Update guessed rows
-            guesses.forEach((guess, rowIndex) => {
-                const result = checkGuess(guess);
-                for (let i = 0; i < wordLength; i++) {
-                    const tile = document.getElementById(`tile-${rowIndex}-${i}`);
-                    tile.textContent = guess[i];
-                    tile.className = `tile ${result[i]}`;
-                    tile.style.animationDelay = `${i * 0.1}s`;
-                }
-            });
-            
-            // Update current row
-            if (!gameOver && guesses.length < MAX_GUESSES) {
-                const currentRowIndex = guesses.length;
-                for (let i = 0; i < wordLength; i++) {
-                    const tile = document.getElementById(`tile-${currentRowIndex}-${i}`);
-                    tile.textContent = currentGuess[i] || '';
-                    tile.className = currentGuess[i] ? 'tile filled' : 'tile';
-                }
-            }
-        }
-
-        // ============================================
-        // KEYBOARD
-        // ============================================
-        function createKeyboard() {
-            const keyboard = document.getElementById('keyboard');
-            keyboard.innerHTML = '';
-            
-            const rows = [
-                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-                ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
-            ];
-            
-            rows.forEach(row => {
-                const rowDiv = document.createElement('div');
-                rowDiv.className = 'keyboard-row';
-                
-                row.forEach(key => {
-                    const button = document.createElement('button');
-                    button.className = 'key';
-                    button.textContent = key;
-                    button.id = `key-${key}`;
-                    
-                    if (key === 'ENTER' || key === '⌫') {
-                        button.classList.add('wide');
-                    }
-                    
-                    button.addEventListener('click', () => handleKeyPress(key));
-                    rowDiv.appendChild(button);
-                });
-                
-                keyboard.appendChild(rowDiv);
-            });
-        }
-
-        function updateKeyboard() {
-            const letterStatus = {};
-            
-            guesses.forEach(guess => {
-                const result = checkGuess(guess);
-                for (let i = 0; i < guess.length; i++) {
-                    const letter = guess[i];
-                    const status = result[i];
-                    
-                    // Priority: correct > present > absent
-                    if (status === 'correct') {
-                        letterStatus[letter] = 'correct';
-                    } else if (status === 'present' && letterStatus[letter] !== 'correct') {
-                        letterStatus[letter] = 'present';
-                    } else if (status === 'absent' && !letterStatus[letter]) {
-                        letterStatus[letter] = 'absent';
-                    }
-                }
-            });
-            
-            Object.keys(letterStatus).forEach(letter => {
-                const key = document.getElementById(`key-${letter}`);
-                if (key) {
-                    key.className = `key ${letterStatus[letter]}`;
-                }
-            });
-        }
-
-        // ============================================
-        // GAME LOGIC
-        // ============================================
-        function checkGuess(guess) {
-            const target = currentWord.word.toUpperCase();
-            const result = new Array(target.length).fill('absent');
-            const targetLetters = target.split('');
-            const guessLetters = guess.toUpperCase().split('');
-            
-            // First pass: find correct letters
-            guessLetters.forEach((letter, i) => {
-                if (letter === targetLetters[i]) {
-                    result[i] = 'correct';
-                    targetLetters[i] = null;
-                }
-            });
-            
-            // Second pass: find present letters
-            guessLetters.forEach((letter, i) => {
-                if (result[i] !== 'correct') {
-                    const index = targetLetters.indexOf(letter);
-                    if (index !== -1) {
-                        result[i] = 'present';
-                        targetLetters[index] = null;
-                    }
-                }
-            });
-            
-            return result;
-        }
-
-        function handleKeyPress(key) {
-            if (gameOver) return;
-            
-            const wordLength = currentWord.word.length;
-            
-            if (key === 'ENTER') {
-                submitGuess();
-            } else if (key === '⌫') {
-                currentGuess = currentGuess.slice(0, -1);
-                updateBoard();
-            } else if (currentGuess.length < wordLength) {
-                currentGuess += key;
-                updateBoard();
-            }
-        }
-
-        function submitGuess() {
-            const wordLength = currentWord.word.length;
-            const maxGuesses = hintUsed ? MAX_GUESSES - 1 : MAX_GUESSES;
-            
-            if (currentGuess.length !== wordLength) {
-                showMessage(`Guess must be ${wordLength} letters`);
-                shakeCurrentRow();
-                return;
-            }
-            
-            guesses.push(currentGuess.toUpperCase());
-            
-            // Check win/lose
-            if (currentGuess.toUpperCase() === currentWord.word.toUpperCase()) {
-                gameOver = true;
-                updateBoard();
-                updateKeyboard();
-                setTimeout(() => showGameResult(true), 1500);
-            } else if (guesses.length >= maxGuesses) {
-                gameOver = true;
-                updateBoard();
-                updateKeyboard();
-                setTimeout(() => showGameResult(false), 1500);
-            } else {
-                updateBoard();
-                updateKeyboard();
-            }
-            
-            currentGuess = "";
-            saveGameState();
-        }
-
-        function shakeCurrentRow() {
-            const row = document.getElementById(`row-${guesses.length}`);
-            row.classList.add('shake');
-            setTimeout(() => row.classList.remove('shake'), 300);
-        }
-
-        // ============================================
-        // HINTS & DIAGRAMS
-        // ============================================
-        function showHint() {
-            if (gameOver) return;
-            
-            const hintDisplay = document.getElementById('hint-display');
-            
-            // If already used, just toggle visibility
-            if (hintUsed) {
-                hintDisplay.classList.toggle('visible');
-                const isVisible = hintDisplay.classList.contains('visible');
-                document.getElementById('hint-btn').innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                    </svg>
-                    ${isVisible ? 'Hide Hint' : 'Show Hint'}
-                `;
-                return;
-            }
-            
-            // First time using hint - apply penalty
-            hintUsed = true;
-            
-            // Grey out the last row to show penalty
-            const lastRowIndex = MAX_GUESSES - 1;
-            const wordLength = currentWord.word.length;
-            for (let i = 0; i < wordLength; i++) {
-                const tile = document.getElementById(`tile-${lastRowIndex}-${i}`);
-                tile.style.opacity = '0.3';
-                tile.style.borderStyle = 'dashed';
-            }
-            
-            document.getElementById('hint-text').textContent = currentWord.hint;
-            hintDisplay.classList.add('visible');
-            document.getElementById('hint-btn').innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                Hide Hint
-            `;
-            
-            showMessage('Hint revealed! You now have 5 guesses.');
-            saveGameState();
-        }
-
-        function hideHint() {
-            document.getElementById('hint-display').classList.remove('visible');
-            document.getElementById('hint-btn').innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                Show Hint
-            `;
-        }
-
-        // ============================================
-        // MESSAGES & MODALS
-        // ============================================
-        function showMessage(text, duration = 2000) {
-            const container = document.getElementById('message-container');
-            const message = document.createElement('div');
-            message.className = 'message';
-            message.textContent = text;
-            container.appendChild(message);
-            
-            setTimeout(() => {
-                message.remove();
-            }, duration);
-        }
-
-        function showModal(type) {
-            document.getElementById(`${type}-modal`).classList.add('visible');
-            if (type === 'stats') {
-                updateStatsDisplay();
-            }
-        }
-
-        function hideModal(type) {
-            document.getElementById(`${type}-modal`).classList.remove('visible');
-        }
-
-        function showGameResult(won) {
+        function onGameEnd(won) {
             const stats = loadStats();
             stats.played++;
-            
+
             if (won) {
                 stats.wins++;
                 stats.currentStreak++;
                 stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
                 stats.distribution[guesses.length - 1]++;
-                
-                document.getElementById('result-title').textContent = '🎉 Excellent!';
+
+                document.getElementById('result-title').textContent = 'Excellent!';
                 document.getElementById('game-result').className = 'game-result visible win';
             } else {
                 stats.currentStreak = 0;
-                
-                document.getElementById('result-title').textContent = '📚 Keep Learning!';
+                document.getElementById('result-title').textContent = 'Keep Learning!';
                 document.getElementById('game-result').className = 'game-result visible lose';
             }
-            
+
             saveStats(stats);
-            
+
             document.getElementById('result-answer').textContent = currentWord.word;
             document.getElementById('result-definition').textContent = currentWord.hint;
-            
+
             // Start countdown
             updateCountdown();
             setInterval(updateCountdown, 1000);
@@ -1480,195 +313,6 @@
             document.getElementById('countdown').textContent = formatCountdown(timeLeft);
         }
 
-        function updateStatsDisplay() {
-            const stats = loadStats();
-            
-            document.getElementById('stat-played').textContent = stats.played;
-            document.getElementById('stat-win-pct').textContent = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
-            document.getElementById('stat-streak').textContent = stats.currentStreak;
-            document.getElementById('stat-max-streak').textContent = stats.maxStreak;
-            
-            // Distribution bars
-            const maxDist = Math.max(...stats.distribution, 1);
-            const container = document.getElementById('distribution-bars');
-            container.innerHTML = '';
-            
-            stats.distribution.forEach((count, i) => {
-                const row = document.createElement('div');
-                row.className = 'distribution-row';
-                
-                const label = document.createElement('span');
-                label.className = 'distribution-label';
-                label.textContent = i + 1;
-                
-                const bar = document.createElement('div');
-                bar.className = 'distribution-bar';
-                if (gameOver && guesses.length === i + 1 && guesses[guesses.length - 1].toUpperCase() === currentWord.word.toUpperCase()) {
-                    bar.classList.add('highlight');
-                }
-                bar.style.width = `${(count / maxDist) * 100}%`;
-                bar.textContent = count;
-                
-                row.appendChild(label);
-                row.appendChild(bar);
-                container.appendChild(row);
-            });
-        }
-
-        // ============================================
-        // SHARE
-        // ============================================
-        function shareResults() {
-            const won = guesses[guesses.length - 1].toUpperCase() === currentWord.word.toUpperCase();
-            const score = won ? guesses.length : 'X';
-            
-            let grid = '';
-            guesses.forEach(guess => {
-                const result = checkGuess(guess);
-                result.forEach(status => {
-                    if (status === 'correct') grid += '🟩';
-                    else if (status === 'present') grid += '🟨';
-                    else grid += '⬛';
-                });
-                grid += '\n';
-            });
-            
-            const text = `Podiadle Week ${currentWeek} ${score}/6\n\n${grid}\n#Podiadle #UoH #Podiatry`;
-            
-            if (navigator.share) {
-                navigator.share({ text });
-            } else {
-                navigator.clipboard.writeText(text).then(() => {
-                    showMessage('Copied to clipboard!');
-                });
-            }
-        }
-
-        // ============================================
-        // KEYBOARD EVENTS
-        // ============================================
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey || e.altKey) return;
-            
-            if (e.key === 'Enter') {
-                handleKeyPress('ENTER');
-            } else if (e.key === 'Backspace') {
-                handleKeyPress('⌫');
-            } else if (/^[a-zA-Z]$/.test(e.key)) {
-                handleKeyPress(e.key.toUpperCase());
-            }
-        });
-
-        // Close modals on overlay click
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('visible');
-                }
-            });
-        });
-
-        // ============================================
-        // RESET GAME
-        // ============================================
-        function resetGame() {
-            // Pick a random word different from current
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * TERMS.length);
-            } while (TERMS[newIndex].word === currentWord.word);
-            
-            currentWord = TERMS[newIndex];
-            currentGuess = "";
-            guesses = [];
-            gameOver = false;
-            hintUsed = false;
-            
-            // Clear localStorage for this session
-            localStorage.removeItem('podiadle_state');
-            
-            // Reset UI
-            document.getElementById('game-result').classList.remove('visible', 'win', 'lose');
-            document.getElementById('hint-display').classList.remove('visible');
-            document.getElementById('hint-btn').disabled = false;
-            document.getElementById('hint-btn').innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                Show Hint (-1 guess)
-            `;
-            document.getElementById('category-badge').textContent = currentWord.category;
-            document.getElementById('week-title').textContent = 'Practice Mode';
-            document.getElementById('week-dates').textContent = 'Random term - play as many as you like!';
-            
-            // Rebuild board and keyboard
-            createBoard();
-            createKeyboard();
-            updateBoard();
-        }
-
-        // ============================================
-        // INITIALISATION
-        // ============================================
-        function init() {
-            currentWeek = getWeekNumber();
-            currentWord = getWordForWeek(currentWeek);
-            
-            // Update week info
-            document.getElementById('week-title').textContent = `Week ${currentWeek} Puzzle`;
-            document.getElementById('category-badge').textContent = currentWord.category;
-            
-            const now = new Date();
-            
-            // Calculate current week's Friday start
-            const dayOfWeek = now.getDay();
-            const daysSinceFriday = (dayOfWeek + 2) % 7; // Days since last Friday
-            const weekStart = new Date(now);
-            weekStart.setDate(now.getDate() - daysSinceFriday);
-            const weekEnd = new Date(weekStart);
-            weekEnd.setDate(weekStart.getDate() + 6);
-            
-            const options = { day: 'numeric', month: 'short' };
-            document.getElementById('week-dates').textContent = 
-                `${weekStart.toLocaleDateString('en-GB', options)} - ${weekEnd.toLocaleDateString('en-GB', options)}`;
-            
-            // Load saved state
-            const savedState = loadGameState();
-            if (savedState && savedState.week === currentWeek) {
-                guesses = savedState.guesses || [];
-                gameOver = savedState.gameOver || false;
-                hintUsed = savedState.hintUsed || false;
-            }
-            
-            createBoard();
-            createKeyboard();
-            updateBoard();
-            updateKeyboard();
-            
-            if (hintUsed) {
-                document.getElementById('hint-text').textContent = currentWord.hint;
-                // Grey out the last row to show penalty
-                const lastRowIndex = MAX_GUESSES - 1;
-                const wordLength = currentWord.word.length;
-                for (let i = 0; i < wordLength; i++) {
-                    const tile = document.getElementById(`tile-${lastRowIndex}-${i}`);
-                    tile.style.opacity = '0.3';
-                    tile.style.borderStyle = 'dashed';
-                }
-            }
-            
-            if (gameOver) {
-                const won = guesses[guesses.length - 1].toUpperCase() === currentWord.word.toUpperCase();
-                showGameResult(won);
-            }
-            
-            // Start the weekly countdown timer
-            updateWeeklyCountdown();
-            setInterval(updateWeeklyCountdown, 1000);
-        }
-
         function updateWeeklyCountdown() {
             const timeLeft = getTimeUntilNextWeek();
             const countdownEl = document.getElementById('week-countdown');
@@ -1677,7 +321,110 @@
             }
         }
 
-        // Start the game
+        // ============================================
+        // RESET (practice mode)
+        // ============================================
+
+        function resetGame() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * TERMS.length);
+            } while (TERMS[newIndex].word === currentWord.word);
+
+            currentWord = TERMS[newIndex];
+            currentGuess = "";
+            guesses = [];
+            gameOver = false;
+            hintUsed = false;
+
+            localStorage.removeItem('podiadle_state');
+
+            // Reset UI
+            document.getElementById('game-result').classList.remove('visible', 'win', 'lose');
+            document.getElementById('hint-display').classList.remove('visible');
+            document.getElementById('hint-btn').disabled = false;
+            document.getElementById('hint-btn').innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                Show Hint (-1 guess)
+            `;
+            document.getElementById('category-badge').textContent = currentWord.category;
+            document.getElementById('week-title').textContent = 'Practice Mode';
+            document.getElementById('week-dates').textContent = 'Random term — play as many as you like!';
+
+            createBoard();
+            createKeyboard();
+            updateBoard();
+        }
+
+        // ============================================
+        // INIT
+        // ============================================
+
+        function init() {
+            currentWeek = getWeekNumber();
+            currentWord = getWordForWeek(currentWeek);
+
+            // Update week info
+            document.getElementById('week-title').textContent = `Week ${currentWeek} Puzzle`;
+            document.getElementById('category-badge').textContent = currentWord.category;
+
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const daysSinceFriday = (dayOfWeek + 2) % 7;
+            const weekStart = new Date(now);
+            weekStart.setDate(now.getDate() - daysSinceFriday);
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekStart.getDate() + 6);
+
+            const options = { day: 'numeric', month: 'short' };
+            document.getElementById('week-dates').textContent =
+                `${weekStart.toLocaleDateString('en-GB', options)} - ${weekEnd.toLocaleDateString('en-GB', options)}`;
+
+            // Load saved state
+            const savedState = loadGameState();
+            if (savedState && savedState.week === currentWeek) {
+                guesses = savedState.guesses || [];
+                gameOver = savedState.gameOver || false;
+                hintUsed = savedState.hintUsed || false;
+            }
+
+            createBoard();
+            createKeyboard();
+            updateBoard();
+            updateKeyboard();
+
+            if (hintUsed) {
+                document.getElementById('hint-text').textContent = currentWord.hint;
+                const lastRowIndex = MAX_GUESSES - 1;
+                const wordLength = currentWord.word.length;
+                for (let i = 0; i < wordLength; i++) {
+                    const tile = document.getElementById(`tile-${lastRowIndex}-${i}`);
+                    tile.style.opacity = '0.3';
+                    tile.style.borderStyle = 'dashed';
+                }
+                document.getElementById('hint-btn').innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Hide Hint
+                `;
+            }
+
+            if (gameOver) {
+                const won = guesses[guesses.length - 1] === currentWord.word.toUpperCase();
+                onGameEnd(won);
+            }
+
+            // Start the weekly countdown timer
+            updateWeeklyCountdown();
+            setInterval(updateWeeklyCountdown, 1000);
+        }
+
+        // Start
+        setupKeyboardListener();
+        setupModalClosers();
         init();
     </script>
 </body>

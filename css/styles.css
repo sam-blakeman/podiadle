@@ -1,0 +1,1117 @@
+/* ============================================
+   Podiadle — Shared Styles
+   ============================================ */
+
+:root {
+    --hud-blue: #003865;
+    --hud-blue-light: #004d8c;
+    --hud-orange: #e87722;
+    --hud-orange-light: #ff8c3a;
+    --correct: #538d4e;
+    --present: #b59f3b;
+    --absent: #3a3a3c;
+    --tile-border: #3a3a3c;
+    --key-bg: #818384;
+    --white: #ffffff;
+    --light-grey: #d3d6da;
+    --dark-bg: #121213;
+    --tile-bg: #121213;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
+    min-height: 100vh;
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    background: var(--hud-blue);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--hud-orange);
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--hud-orange) 0%, var(--hud-orange-light) 50%, var(--hud-orange) 100%);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hud-logo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.hud-logo-row {
+    display: flex;
+    gap: 3px;
+}
+
+.hud-logo-block {
+    width: 22px;
+    height: 22px;
+}
+
+.hud-logo-block.orange {
+    background: var(--hud-orange);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+}
+
+.hud-logo-block.blue {
+    background: var(--white);
+    clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+}
+
+.hud-logo-block.orange2 {
+    background: var(--hud-orange);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+}
+
+.hud-logo-block.blue2 {
+    background: var(--white);
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text .uni-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    opacity: 0.9;
+}
+
+.brand-text .app-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--white);
+}
+
+.brand-text .app-name span {
+    color: var(--hud-orange);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.header-btn {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.header-btn:hover {
+    background: var(--hud-orange);
+    border-color: var(--hud-orange);
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+/* ============================================
+   WEEK / EVENT INFO
+   ============================================ */
+
+.week-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--hud-orange);
+}
+
+.week-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--hud-orange);
+    margin-bottom: 0.3rem;
+}
+
+.week-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.category-badge {
+    display: inline-block;
+    background: var(--hud-blue);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.next-week-countdown,
+.countdown {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.next-week-countdown span,
+.countdown span {
+    color: var(--hud-orange);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.visitor-greeting {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--hud-orange);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* ============================================
+   GAME BOARD
+   ============================================ */
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.board-row {
+    display: flex;
+    gap: 6px;
+}
+
+.tile {
+    width: 52px;
+    height: 52px;
+    border: 2px solid var(--tile-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--tile-bg);
+    transition: transform 0.1s ease;
+    position: relative;
+}
+
+.tile.filled {
+    border-color: var(--light-grey);
+    animation: pop 0.1s ease;
+}
+
+.tile.correct {
+    background: var(--correct);
+    border-color: var(--correct);
+    animation: flip 0.5s ease forwards;
+}
+
+.tile.present {
+    background: var(--present);
+    border-color: var(--present);
+    animation: flip 0.5s ease forwards;
+}
+
+.tile.absent {
+    background: var(--absent);
+    border-color: var(--absent);
+    animation: flip 0.5s ease forwards;
+}
+
+/* Colorblind accessibility indicators */
+.tile.correct::after {
+    content: "■";
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 10px;
+    opacity: 0.6;
+    line-height: 1;
+}
+
+.tile.present::after {
+    content: "●";
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 10px;
+    opacity: 0.6;
+    line-height: 1;
+}
+
+.tile.absent::after {
+    content: "✕";
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 9px;
+    opacity: 0.4;
+    line-height: 1;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes flip {
+    0% { transform: rotateX(0); }
+    50% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.board-row.shake {
+    animation: shake 0.3s ease;
+}
+
+/* ============================================
+   KEYBOARD
+   ============================================ */
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 5px;
+}
+
+.key {
+    min-width: 35px;
+    height: 50px;
+    border: none;
+    border-radius: 4px;
+    background: var(--key-bg);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    transition: all 0.1s ease;
+    padding: 0 6px;
+    touch-action: manipulation;
+}
+
+.key:hover {
+    background: #a0a0a0;
+}
+
+.key.wide {
+    min-width: 60px;
+    font-size: 0.7rem;
+}
+
+.key.correct {
+    background: var(--correct);
+}
+
+.key.present {
+    background: var(--present);
+}
+
+.key.absent {
+    background: #3a3a3c;
+}
+
+/* ============================================
+   HELP / HINTS
+   ============================================ */
+
+.help-section {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.help-btn {
+    background: var(--hud-blue);
+    border: none;
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.help-btn:hover {
+    background: var(--hud-blue-light);
+    transform: translateY(-2px);
+}
+
+.help-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.help-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.hint-display {
+    background: rgba(232, 119, 34, 0.15);
+    border: 2px solid var(--hud-orange);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: none;
+    position: relative;
+}
+
+.hint-display.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.hint-display h4 {
+    color: var(--hud-orange);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.hint-display p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.hint-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.hint-close:hover {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   GAME RESULT
+   ============================================ */
+
+.game-result {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.game-result.visible {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.game-result h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.game-result.win h3 {
+    color: var(--correct);
+}
+
+.game-result.lose h3 {
+    color: var(--hud-orange);
+}
+
+.game-result .answer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 1rem 0;
+    color: var(--hud-orange);
+}
+
+.game-result .definition {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.game-result-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    background: var(--correct);
+    border: none;
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(83, 141, 78, 0.4);
+}
+
+.share-btn.secondary {
+    background: var(--hud-blue);
+}
+
+.share-btn.secondary:hover {
+    box-shadow: 0 4px 15px rgba(0, 56, 101, 0.4);
+}
+
+.next-puzzle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1rem;
+}
+
+.next-puzzle span {
+    color: var(--hud-orange);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* ============================================
+   MESSAGE TOAST
+   ============================================ */
+
+.message-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.message {
+    background: var(--white);
+    color: var(--dark-bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.modal-overlay.visible {
+    display: flex;
+}
+
+.modal {
+    background: #1a1a2e;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid var(--hud-blue);
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+    background: var(--hud-blue);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--hud-orange);
+}
+
+.modal-header h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+}
+
+.modal-close:hover {
+    opacity: 0.7;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* How to Play */
+.how-to-play p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.example-row {
+    display: flex;
+    gap: 4px;
+    margin: 1rem 0;
+}
+
+.example-tile {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--tile-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.example-tile.correct { background: var(--correct); border-color: var(--correct); }
+.example-tile.present { background: var(--present); border-color: var(--present); }
+.example-tile.absent { background: var(--absent); border-color: var(--absent); }
+
+.example-text {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #aaa;
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.guess-distribution h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.distribution-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.distribution-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    width: 20px;
+}
+
+.distribution-bar {
+    background: var(--hud-blue);
+    height: 24px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.distribution-bar.highlight {
+    background: var(--correct);
+}
+
+/* ============================================
+   EVENT MODE SPECIFICS
+   ============================================ */
+
+.event-badge {
+    background: var(--hud-orange);
+    color: var(--white);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.next-visitor-btn {
+    background: var(--correct);
+    border: none;
+    color: var(--white);
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.next-visitor-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(83, 141, 78, 0.4);
+}
+
+/* Registration Overlay */
+.registration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    padding: 1rem;
+}
+
+.registration-overlay.hidden {
+    display: none;
+}
+
+.registration-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+    border: 2px solid var(--hud-blue);
+    border-radius: 16px;
+    max-width: 440px;
+    width: 100%;
+    overflow: hidden;
+    animation: modalIn 0.3s ease;
+}
+
+.registration-header {
+    background: var(--hud-blue);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--hud-orange);
+}
+
+.registration-header .logo-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.registration-header .app-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--white);
+}
+
+.registration-header .app-name span {
+    color: var(--hud-orange);
+}
+
+.registration-header .event-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--hud-orange);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.registration-body {
+    padding: 2rem;
+}
+
+.registration-body p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--tile-border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--hud-orange);
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.play-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--hud-orange);
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.play-btn:hover {
+    background: var(--hud-orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(232, 119, 34, 0.4);
+}
+
+.play-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.consent-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.consent-group input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.consent-check {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    border: 2px solid #666;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1px;
+}
+
+.consent-group input[type="checkbox"]:checked + .consent-check {
+    background: var(--hud-orange);
+    border-color: var(--hud-orange);
+}
+
+.consent-check::after {
+    content: '';
+    display: none;
+    width: 6px;
+    height: 11px;
+    border: solid var(--white);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+.consent-group input[type="checkbox"]:checked + .consent-check::after {
+    display: block;
+}
+
+.consent-label {
+    font-size: 0.8rem;
+    color: #aaa;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.consent-label a {
+    color: var(--hud-orange);
+    text-decoration: underline;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+}
+
+.footer p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.footer a {
+    color: var(--hud-orange);
+    text-decoration: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 500px) {
+    .tile {
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+    }
+
+    .key {
+        min-width: 28px;
+        height: 45px;
+        font-size: 0.75rem;
+    }
+
+    .key.wide {
+        min-width: 50px;
+        font-size: 0.65rem;
+    }
+
+    .header {
+        padding: 0.8rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .brand-text .app-name {
+        font-size: 1.2rem;
+    }
+
+    .brand-text .uni-name {
+        font-size: 0.6rem;
+    }
+
+    .hud-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hud-logo-block {
+        width: 18px;
+        height: 18px;
+    }
+
+    .header-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .next-visitor-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .registration-body {
+        padding: 1.5rem;
+    }
+}
